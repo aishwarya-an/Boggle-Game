@@ -56,8 +56,14 @@ const vector<string>* Board::get_board() const{
 void Board::print(){
 	int i = 0;
 	while(i < rows){
-		int cell = columns * i;
-		cout << "|";
+		int cell = i * columns;
+		cout << "o";
+		int j = 0;
+		while(j < rows){
+			cout << "---o";
+			++j;
+		}
+		cout << endl << "|";
 		while(cell < columns*(i+1)){
 			cout << " " << (*grid)[cell];
 			if((*grid)[cell] == "Qu")
@@ -69,6 +75,13 @@ void Board::print(){
 		cout << endl;
 		++i;
 	}
+	cout << "o";
+	i = 0;
+	while(i < rows){
+		cout << "---o";
+		++i;
+	}
+	cout << endl;
 }
 
 // This is the destructor which frees the memory dynamically allocated by the constructor.

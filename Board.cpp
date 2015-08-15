@@ -39,17 +39,17 @@ Board::Board(const Board &another){
 
 // This function returns the number of rows in the grid.
 int Board::get_rows() const{
-	return 0;
+	return rows;
 }
 
 // This function returns the number of columns in the board.
 int Board::get_columns() const{
-	return 0;
+	return columns;
 }
 
 // This function returns the grid.
 const vector<string>* Board::get_board() const{
-	return new vector<string>();
+	return grid;
 }
 
 // This function prints the board.

@@ -18,6 +18,7 @@ private:
 	vector<bool>* visited;
 	int points;
 	void Depth_First_Search(const vector<string>*, int, const node*, bool, int, string, string);
+	string to_uppercase(string);
 public:
 	Boggle(int, int, string);
 	Boggle(const Boggle&);

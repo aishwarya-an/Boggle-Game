@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <algorithm>
+#include <cctype>
 #include "Boggle.h"
 
 using namespace std;
@@ -218,6 +219,16 @@ void Boggle::print_words(){
 	int i = 0;
 	while(i < words->size()){
 		cout << (*words)[i] << endl;
+		++i;
+	}
+}
+
+
+// This private function is used to convert the word taken in to its uppercase form.
+string Boggle::to_uppercase(string word){
+	int i = 0;
+	while(i < word.size()){
+		word[i] = toupper(word[i]);
 		++i;
 	}
 }

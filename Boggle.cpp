@@ -1,20 +1,32 @@
 // This is the definition of the Boggle class
 
+#include <fstream>
 #include "Boggle.h"
 
 using namespace std;
 
 // This is the constructor which takes in the number of rows and columns and the name of the file containing the dictionary.
+// It creates a board with the number of rows and columns given. It inserts all the words from the file(dictionary) to the trie. 
 Boggle::Boggle(int row, int column, string filename){
-
+	grid = new Board(row, column);
+	dictionary = new Trie();
+	ifstream file;
+	file.open(filename.c_str());
+	string word;
+	while(file >> word)
+		dictionary->insert(word);
 }
+
 
 // This is the copy constructor which takes in an object and copies the contents of the object into another new object.
 Boggle::Boggle(const Boggle &another){
-
+	const Board* board2 = another.get_board();
+	const Trie* dictionary2 = another.get_dictionary();
+	grid = new Board(*board2);
+	dictionary = new Trie(*dictionary2);
 }
 
-// This function prints all the possible words using the latters in the board.
+// This function prints all the possible words using the letters in the board.
 void Boggle::print_words(){
 
 }
@@ -60,5 +72,6 @@ int Boggle::get_points() const{
 
 // This is the destructor which frees the memory dynamically allocated by the constructor.
 Boggle::~Boggle(){
-
+	delete grid;
+	delete dictionary;
 }

@@ -294,8 +294,14 @@ void Boggle::run(){
 
 // This function takes in a vector of words, which are wrong words and prints them. This function is called by the run() function.
 void Boggle::print_wrong_words(vector<string>* wrong_words){
-
+	cout << "The wrong words given by you : " << endl;
+	int i = 0;
+	while(i < wrong_words->size()){
+		cout << (*wrong_words)[i] << endl;
+		++i;
+	}
 }
+
 
 // This function returns the trie containing the dictionary.
 const Trie* Boggle::get_dictionary() const{

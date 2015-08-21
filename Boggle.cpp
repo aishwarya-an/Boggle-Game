@@ -20,7 +20,7 @@ Boggle::Boggle(int row, int column, string filename){
 	words = new vector<string>();
 	visited = new vector<bool>(row * column, false);
 	find_words();
-	// Sorting all the owrds in alphabetical order
+	// Sorting all the words in alphabetical order
 	sort(words->begin(), words->end());
 }
 
@@ -211,10 +211,17 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 	// letter is done.
 }
 
+
 // This function prints all the possible words using the letters in the board.
 void Boggle::print_words(){
-
+	cout << "The possible words which can be formed from the board are : " << endl;
+	int i = 0;
+	while(i < words->size()){
+		cout << (*words)[i] << endl;
+		++i;
+	}
 }
+
 
 // This function first prints the board consisting of the letters, then takes the input of words from the user. It then prints
 // the words of the user which are wrong. It also prints all the possible words using the letters in the board and gives the 

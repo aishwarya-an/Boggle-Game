@@ -25,6 +25,8 @@ Board::Board(int row, int column){
 	while(i < grid->size()){
 		int letter = get_number();
 		(*grid)[i] = letter + 65;
+		if((*grid)[i] == 'Q')
+			(*grid)[i] = "Qu";
 		++i;
 	}
 }

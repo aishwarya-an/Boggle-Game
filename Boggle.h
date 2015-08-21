@@ -14,11 +14,14 @@ private:
 	Trie* dictionary;
 	Board* grid;
 	Trie* possible_words;
-	vector<string> words;
+	vector<string>* words;
+	vector<bool>* visited;
 	int points;
+	void Depth_First_Search(const vector<string>*, int, const node*, bool, int, string, string);
 public:
 	Boggle(int, int, string);
 	Boggle(const Boggle&);
+	void find_words();
 	void print_words();
 	void run();
 	void print_wrong_words(vector<string>*);

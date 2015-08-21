@@ -263,7 +263,32 @@ int Boggle::points_for_word(string word){
 // points scored by the user and the total points which could have been scored by the user i.e the points for all the possible
 // words.
 void Boggle::run(){
-
+	cout << "The boggle board is : " << endl;
+	grid->print();
+	cout << endl << "Give all the valid words which can be formed using the letters in the above board according to the following"
+	<< " rules : " << endl << "1. A valid word must be composed by following a sequence of adjacent dice — two dice are adjacent" 
+	<< " if they are horizontal, vertical, or diagonal neighbours." << endl << "2. A valid word can use each die at most once."
+	<< endl << "3. A valid word must contain at least 3 letters." << endl << "4. A valid word must be in the dictionary (which" 
+	<< " typically does not contain proper nouns)." << endl << "Points will be given according to the length of the words you form."
+	<< endl << "Press Q when you finish inputing words.." << endl << endl;
+	vector<string> wrong_words;
+	int current_points = 0;
+	string word;
+	cin >> word;
+	while(word != "Q"){
+		word = to_uppercase(word);
+		if(word.size() < 3 || !possible_words->find(word))
+			wrong_words.insert(wrong_words.begin(), word);
+		else
+			current_points += points_for_word(word);
+		cin >> word;
+	}
+	cout << endl;
+	print_wrong_words(&wrong_words);
+	cout << endl;
+	print_words();
+	cout << endl << "Points scored by you : " << current_points << endl << "Total points which could have been scored : " << points
+	<< endl;
 }
 
 

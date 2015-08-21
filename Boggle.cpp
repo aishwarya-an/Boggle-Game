@@ -15,11 +15,14 @@ Boggle::Boggle(int row, int column, string filename){
 	ifstream file;
 	file.open(filename.c_str());
 	string word;
-	while(file >> word)
+	while(file >> word){
+		word = to_uppercase(word);
 		dictionary->insert(word);
+	}
 	possible_words = new Trie();
 	words = new vector<string>();
 	visited = new vector<bool>(row * column, false);
+	points = 0;
 	find_words();
 	// Sorting all the words in alphabetical order
 	sort(words->begin(), words->end());
@@ -87,6 +90,7 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 					if(current.size() == 1 && (*children)[i]->is_word && (word+letter).size() >= 3){
 						possible_words->insert(word + letter);
 						words->insert(words->begin(), word + letter);
+						points += points_for_word(word + letter);
 					}
 					current_node = (*children)[i];
 					index = 0;
@@ -105,6 +109,7 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 						else if(current.size() == 2 && (*children)[i]->is_word && (word + letter).size() >= 3){
 							possible_words->insert(word + letter);
 							words->insert(words->begin(), word + letter);
+							points += points_for_word(word + letter);
 						}
 					}
 					// Else if the size of the label of current node is 1, then check 'u' separately in the childlist of current node
@@ -129,6 +134,7 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 				if(index == current_node->label.size() - 1 && current_node->is_word && (word + letter).size() >= 3){
 					possible_words->insert(word + letter);
 					words->insert(words->begin(), word + letter);
+					points += points_for_word(word + letter);
 				}
 			}
 			else{
@@ -143,6 +149,7 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 						if(index == current_node->label.size() - 1 && current_node->is_word && (word + letter).size() >= 3){
 							possible_words->insert(word + letter);
 							words->insert(words->begin(), word + letter);
+							points += points_for_word(word + letter);
 						}
 					}
 					else{
@@ -231,8 +238,25 @@ string Boggle::to_uppercase(string word){
 		word[i] = toupper(word[i]);
 		++i;
 	}
+	return word;
 }
 
+
+// This private function returns the points for the word taken in according to its length.
+int Boggle::points_for_word(string word){
+	if(word.size() < 3)
+		return 0;
+	if(word.size() == 3 || word.size() == 4)
+		return 1;
+	if(word.size() == 5)
+		return 2;
+	if(word.size() == 6)
+		return 3;
+	if(word.size() == 7)
+		return 5;
+	if(word.size() >= 8)
+		return 11;
+}
 
 // This function first prints the board consisting of the letters, then takes the input of words from the user. It then prints
 // the words of the user which are wrong. It also prints all the possible words using the letters in the board and gives the 

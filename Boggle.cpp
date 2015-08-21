@@ -266,6 +266,7 @@ void Boggle::run(){
 
 }
 
+
 // This function takes in a vector of words, which are wrong words and prints them. This function is called by the run() function.
 void Boggle::print_wrong_words(vector<string>* wrong_words){
 
@@ -273,28 +274,28 @@ void Boggle::print_wrong_words(vector<string>* wrong_words){
 
 // This function returns the trie containing the dictionary.
 const Trie* Boggle::get_dictionary() const{
-	return new Trie();
+	return dictionary;
 }
 
 // This function returns board which contains the letters in a random form.
 const Board* Boggle::get_board() const{
-	return new Board(0, 0);
+	return grid;
 }
 
 // This function returns the vector containing all the possible words which can be formed using the letters in the board.
 const vector<string>* Boggle::get_words() const{
-	return new vector<string>();
+	return words;
 }
 
 // This function returns the trie containing the possible words which can be formed using the letters in the board.
 const Trie* Boggle::get_words_trie() const{
-	return new Trie();
+	return possible_words;
 }
 
 // This function returns the total points for all the possible words obtained using the letters in the board. The points is stored
 // in a private member. 
 int Boggle::get_points() const{
-	return 0;
+	return points;
 }
 
 // This is the destructor which frees the memory dynamically allocated by the constructor.

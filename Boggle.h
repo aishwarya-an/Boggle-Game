@@ -27,6 +27,7 @@ public:
 	void print_words();
 	void run();
 	void print_wrong_words(vector<string>*);
+	void print_board();
 	const Trie* get_dictionary() const;
 	const Board* get_board() const;
 	const vector<string>* get_words() const;

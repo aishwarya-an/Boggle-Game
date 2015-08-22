@@ -264,7 +264,7 @@ int Boggle::points_for_word(string word){
 // words.
 void Boggle::run(){
 	cout << "The boggle board is : " << endl;
-	grid->print();
+	print_board();
 	cout << endl << "Give all the valid words which can be formed using the letters in the above board according to the following"
 	<< " rules : " << endl << "1. A valid word must be composed by following a sequence of adjacent dice — two dice are adjacent" 
 	<< " if they are horizontal, vertical, or diagonal neighbours." << endl << "2. A valid word can use each die at most once."
@@ -291,6 +291,10 @@ void Boggle::run(){
 	<< endl;
 }
 
+// This function prints the board.
+void Boggle::print_board(){
+	grid->print();
+}
 
 // This function takes in a vector of words, which are wrong words and prints them. This function is called by the run() function.
 void Boggle::print_wrong_words(vector<string>* wrong_words){

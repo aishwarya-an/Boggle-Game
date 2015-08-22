@@ -88,9 +88,10 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 			if(letter.size() == 1){
 				if(current[0] == letter[0]){
 					if(current.size() == 1 && (*children)[i]->is_word && (word+letter).size() >= 3){
-						possible_words->insert(word + letter);
-						words->insert(words->begin(), word + letter);
-						points += points_for_word(word + letter);
+						if(possible_words->insert(word + letter)){
+							words->insert(words->begin(), word + letter);
+							points += points_for_word(word + letter);
+						}
 					}
 					current_node = (*children)[i];
 					index = 0;
@@ -107,9 +108,10 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 							return;
 						}
 						else if(current.size() == 2 && (*children)[i]->is_word && (word + letter).size() >= 3){
-							possible_words->insert(word + letter);
-							words->insert(words->begin(), word + letter);
-							points += points_for_word(word + letter);
+							if(possible_words->insert(word + letter)){
+								words->insert(words->begin(), word + letter);
+								points += points_for_word(word + letter);
+							}
 						}
 					}
 					// Else if the size of the label of current node is 1, then check 'u' separately in the childlist of current node
@@ -132,9 +134,10 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 		if(letter.size() == 1){
 			if((*current_node).label[index] == letter[0]){
 				if(index == current_node->label.size() - 1 && current_node->is_word && (word + letter).size() >= 3){
-					possible_words->insert(word + letter);
-					words->insert(words->begin(), word + letter);
-					points += points_for_word(word + letter);
+					if(possible_words->insert(word + letter)){
+						words->insert(words->begin(), word + letter);
+						points += points_for_word(word + letter);
+					}
 				}
 			}
 			else{
@@ -147,9 +150,10 @@ void Boggle::Depth_First_Search(const vector<string>* board, int letter_index, c
 				if(index != current_node->label.size() -1){
 					if((*current_node).label[++index] == 'U'){
 						if(index == current_node->label.size() - 1 && current_node->is_word && (word + letter).size() >= 3){
-							possible_words->insert(word + letter);
-							words->insert(words->begin(), word + letter);
-							points += points_for_word(word + letter);
+							if(possible_words->insert(word + letter)){
+								words->insert(words->begin(), word + letter);
+								points += points_for_word(word + letter);
+							}
 						}
 					}
 					else{

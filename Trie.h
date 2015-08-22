@@ -27,7 +27,7 @@ public:
 	Trie();
 	Trie(const Trie&);
 	bool find(string);
-	void insert(string);
+	bool insert(string);
 	const node* get_root() const;
 	int get_size() const;
 	~Trie();

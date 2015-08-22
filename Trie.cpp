@@ -77,8 +77,9 @@ bool Trie::find(string word){
 
 
 // This function takes in a string and inserts the same into the trie object. Its running time is O(m) where m is the length 
-// of the word inserted.
-void Trie::insert(string word){
+// of the word inserted. It returns true if the word is inserted into the trie and returns false if the word was already present
+// in the trie.
+bool Trie::insert(string word){
 	++size;
 	// size stores the number of words in the trie.
 	node* current = root;
@@ -104,7 +105,7 @@ void Trie::insert(string word){
 						if(current->is_word)
 							--size;
 						current->is_word = true;
-						return;
+						return false;
 					}
 					break;
 				}
@@ -138,7 +139,7 @@ void Trie::insert(string word){
 				// Splitting the labl
 				(*current->childlist)[i]->label.erase((*current->childlist)[i]->label.begin() + common, (*current->childlist)[i]->label.end());
 				(*current->childlist)[i]->is_leaf = false;
-				return;
+				return true;
 			}
 			++i;
 		}
@@ -154,7 +155,7 @@ void Trie::insert(string word){
 			current->childlist->insert(current->childlist->end(), new_node);
 			current->is_leaf = false;
 			current->is_word = true;
-			return;
+			return true;
 		}
 
 		// Else if, there is no label in the childlist which is a prefix of the word to be inserted, then insert the remaining
@@ -165,7 +166,7 @@ void Trie::insert(string word){
 			new_node->is_leaf = true;
 			new_node->is_word = true;
 			current->childlist->insert(current->childlist->end(), new_node);
-			return;
+			return true;
 		}
 	}
 }

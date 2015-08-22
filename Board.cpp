@@ -84,7 +84,7 @@ void Board::print(){
 		int cell = i * columns;
 		cout << "o";
 		int j = 0;
-		while(j < rows){
+		while(j < columns){
 			cout << "---o";
 			++j;
 		}
@@ -102,7 +102,7 @@ void Board::print(){
 	}
 	cout << "o";
 	i = 0;
-	while(i < rows){
+	while(i < columns){
 		cout << "---o";
 		++i;
 	}

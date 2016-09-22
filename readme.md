@@ -25,6 +25,7 @@ In the English language, the letter Q is almost always followed by the letter U.
 |8 or more |   	    11            
 
 ## **Installation** ##
-1. Download the source code along with the Makefile and the text file containing the dictionary.  
-2. Compile and link the source files by executing the command `make -f Makefile`  
-3. Then, play the game by executing the command `./game`  
+1. Download the source code along with the makefiles and the text file containing the dictionary.  
+2. To play the *graphical version* of the game, compile and link the source files by executing the command  `make -f Makefile`   
+3. To play the *terminal version* of the game, compile and link the source files by executing the command  `make -f Makefile2`  
+4. Then, play the game by executing the command  `./Game`

@@ -295,6 +295,27 @@ void Boggle::run(){
 	<< endl;
 }
 
+
+// This function takes in a vector of words given by the user and finds the wrong words in them. It then returns a vector
+// containing those wrong words with its last element as the points scored by the user. This function is used by the Bogglesolver
+// class
+vector<string>* Boggle::run(vector<string>* input_words){
+	int i = 0;
+	vector<string>* wrong_words = new vector<string>();
+	int current_points = 0;
+	while(i < input_words->size()){
+		string word = to_uppercase((*input_words)[i]);
+		if(word.size() < 3 || !possible_words->find(word))
+			wrong_words->insert(wrong_words->begin(), word);
+		else
+			current_points += points_for_word(word);
+		++i;
+	}
+	wrong_words->insert(wrong_words->end(), string(1, current_points));
+	return wrong_words;
+}
+
+
 // This function prints the board.
 void Boggle::print_board(){
 	grid->print();
